@@ -4,6 +4,8 @@
 
   示例：
   Move.action(box,{width:500,height:200,left:200,top:100,marginLeft:10,opacity:.5},5,function(){
+
             console.log('end');
+ 
   });
 
