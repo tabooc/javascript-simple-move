@@ -1,18 +1,28 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>git test</title>
-  </head>
-  <body>
-    <div id="test">test</div>
-    <script>
-      (function(){
-        var test=document.getElementById('test');
-        test.style.color="#FF0000";
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="move-1.5.js"></script>
+	<style>
+		body{margin: 0;background: #fff;}
+		#test{padding: 20px;text-align: center;border: 1px solid #308cfb;width: 100px;height: 100px;background: #f1f1f1;position: relative;}
+	</style>
+</head>
+<body>
+	
+<div id="test"> abc </div>
 
-      })();
+	<script>
+		var box = document.getElementById('test');
 
-    </script>
-  </body>
+		box.onclick = function(){
+			Move.action(box,{width:400,height:200,left:200,top:150,marginLeft:10,opacity:.5},5,function(){
+	          console.log('the animiate is end')
+	  		});
+		}
+
+
+	</script>
+</body>
 </html>
