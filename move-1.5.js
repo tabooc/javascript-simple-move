@@ -1,14 +1,12 @@
 /*
-  简易运动框架
-
+  javascript简易运动框架
+  
   Move.action(dom对象,json格式属性值对，缓动参考值，回调方法)
 
   示例：
   Move.action(box,{width:500,height:200,left:200,top:100,marginLeft:10,opacity:.5},5,function(){
           console.log('end');
   });
-
-  
 
 */
 
@@ -26,15 +24,7 @@ var Move = {
   },
   //取CSS样式值
   getStyle: function(obj, attr) {
-    if (obj.currentStyle) { //IE      
-      if (attr == 'opacity') {
-        attr = 'filter';
-        var cStyle = obj.currentStyle[attr];
-        if (cStyle == '') {
-          return 1;
-        }
-        return cStyle.replace(/alpha\(opacity\=([0-9]{1,3})\)/, '$1') / 100;
-      }
+    if (obj.currentStyle) { //IE
       return obj.currentStyle[attr];
     } else {
       return getComputedStyle(obj, null)[attr];
@@ -50,19 +40,18 @@ var Move = {
       return false;
     }
 
-
     //运动开始      
     clearInterval(obj.timer);
     obj.timer = setInterval(function() {
       var isAllCompleted = true, //假设全部运动都完成了
-       speed, //速度
-       attrValue, //当前值
-       targetV; //目标值
+        speed, //速度
+        attrValue, //当前值
+        targetV; //目标值
       for (attr in json) {
         attrValue = _this.getStyle(obj, attr);
         switch (attr) {
           case 'opacity':
-            attrValue = Math.round(parseFloat(attrValue) * 100);
+            attrValue = Math.round((isNaN(parseFloat(attrValue)) ? 1 : parseFloat(attrValue)) * 100);
             speed = (json[attr] * 100 - attrValue) / (sv || 4);
             targetV = json[attr] * 100;
             break;
