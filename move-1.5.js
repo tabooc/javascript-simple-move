@@ -33,7 +33,7 @@ var Move = {
   //运动
   action: function(obj, json, sv, callback) {
 
-    _this = this;
+    var _this = this;
 
     //obj是否为空
     if (_this.isEmptyObject(obj)) {
