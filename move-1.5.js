@@ -13,7 +13,7 @@
 
 var Move = {
 
-  version: '1.5',
+  version: '1.5.1',
 
   //判断是否空对象
   isEmptyObject: function(obj) {
@@ -65,18 +65,20 @@ var Move = {
         //如果循环过程中存在尚未结束的运动，isAllCompleted为假
         if (attrValue != targetV) {
           isAllCompleted = false;
+
+          switch (attr) {
+            case 'opacity':
+              {
+                obj.style.filter = "alpha(opacity=" + (attrValue + speed) + ")";
+                obj.style.opacity = (attrValue + speed) / 100;
+              };
+              break;
+            default:
+              obj.style[attr] = attrValue + speed + 'px';
+          }
         }
 
-        switch (attr) {
-          case 'opacity':
-            {
-              obj.style.filter = "alpha(opacity=" + (attrValue + speed) + ")";
-              obj.style.opacity = (attrValue + speed) / 100;
-            };
-            break;
-          default:
-            obj.style[attr] = attrValue + speed + 'px';
-        }
+
       }
 
       //所有循环结束后，只有当全部运动结束后（isAllCompleted=true）时才关闭定时器
